@@ -1,0 +1,35 @@
+version: '3.8'
+services:
+    php-apache-environment:
+        image: arof44/kuis2
+        container_name: php-apache
+        depends_on:
+            - db
+        volumes:
+            - ./php/src:/var/www/html/
+        ports:
+            - 8000:80
+        networks : 
+            - backend
+
+    db:
+        container_name: db
+        image: mysql
+        restart: always
+        environment:
+            MYSQL_ROOT_PASSWORD: admin
+            MYSQL_DATABASE: penjualan_php
+        ports:
+            - "9906:3306"
+        volumes:
+          - db: /var/lib/mysql
+          - ./penjualan_php.sql
+        networks:
+          - backend
+volumes:
+  db:
+
+
+networks:
+  backend:
+    name: backend-networks

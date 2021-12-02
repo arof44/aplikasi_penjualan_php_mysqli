@@ -1,5 +1,5 @@
 <?php
-$conn = mysqli_connect("localhost","root","","penjualan_php");
+$conn = mysqli_connect("172.20.0.2","root","","penjualan_php");
 
 // Check connection
 if (mysqli_connect_errno())
